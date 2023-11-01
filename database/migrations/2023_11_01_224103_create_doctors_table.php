@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            // Clave foránea
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

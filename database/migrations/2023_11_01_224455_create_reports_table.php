@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->datetime('created_at')->default(now());
             $table->timestamps();
+
+            // Clave foránea
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -25,3 +30,4 @@ return new class extends Migration
         Schema::dropIfExists('reports');
     }
 };
+

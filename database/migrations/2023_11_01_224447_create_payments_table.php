@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('appointment_id');
+            $table->decimal('amount', 10, 2);
+            $table->date('date');
             $table->timestamps();
+
+            // Clave foránea
+            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
         });
     }
 
@@ -25,3 +31,4 @@ return new class extends Migration
         Schema::dropIfExists('payments');
     }
 };
+

@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('doctor_specialties', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('specialty_id');
             $table->timestamps();
+
+            // Claves foráneas
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
         });
     }
 
@@ -25,3 +31,4 @@ return new class extends Migration
         Schema::dropIfExists('doctor_specialties');
     }
 };
+

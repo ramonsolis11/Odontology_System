@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('treatments', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->decimal('cost', 10, 2);
             $table->timestamps();
         });
     }
@@ -25,3 +27,4 @@ return new class extends Migration
         Schema::dropIfExists('treatments');
     }
 };
+

@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('treatment_id');
+            $table->datetime('date_time');
             $table->timestamps();
+
+            // Claves foráneas
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('treatment_id')->references('id')->on('treatments')->onDelete('cascade');
         });
     }
 
@@ -25,3 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('appointments');
     }
 };
+

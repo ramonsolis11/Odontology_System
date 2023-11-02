@@ -18,6 +18,18 @@
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="password" name="password" required>
     </div>
+
+    <div class="form-group">
+        <label for="role">Rol</label>
+        <select class="form-control" id="role" name="role">
+            <option value="admin">Administrador</option>
+            <option value="doctor">Doctor</option>
+            <option value="assistant">Asistente</option>
+            <option value="receptionist">Recepcionista</option>
+            <option value="patient">Paciente</option>
+        </select>
+    </div>
+
     <button type="submit" class="btn btn-primary">Crear Usuario</button>
 </form>
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\ReportController;
 
 
 
+
 Route::resource('users', UserController::class);
 Route::resource('doctors', DoctorController::class);
 Route::resource('specialties', SpecialtyController::class);
@@ -20,4 +21,11 @@ Route::resource('treatments', TreatmentController::class);
 Route::resource('appointments', AppointmentController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('reports', ReportController::class);
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/example', function () {
+    return view('example');
+});
 

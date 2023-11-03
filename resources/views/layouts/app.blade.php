@@ -8,8 +8,27 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <!-- Aquí va la barra de navegación, sidebar, etc. -->
-        @include('layouts.navbar')
+        <!-- Barra de Navegación -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- ... otros elementos de la navbar ... -->
+
+            <!-- Authentication Links -->
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register.patient'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register.patient') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+                @else
+                <!-- ... código para usuario autenticado ... -->
+                @endguest
+            </ul>
+        </nav>
+
+        <!-- Sidebar -->
         @include('layouts.sidebar')
 
         <!-- Contenido Principal -->
@@ -23,3 +42,4 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+

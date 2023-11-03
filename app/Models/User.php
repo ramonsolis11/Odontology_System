@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model
+class User extends Authenticatable implements AuthenticatableContract
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     /**
      * Los atributos que son asignables en masa.
@@ -15,9 +17,28 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'username',
+        'name',
+        'email',
         'password',
-        'role',
+    ];
+
+    /**
+     * Los atributos que deberían ser ocultos para los arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Los atributos que deberían ser de tipo Carbon (fecha y hora).
+     *
+     * @var array
+     */
+    protected $dates = [
+        'email_verified_at',
     ];
 
     /**
@@ -44,4 +65,5 @@ class User extends Model
         return $this->hasMany(Report::class);
     }
 }
+
 
